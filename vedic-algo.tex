@@ -1,0 +1,154 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\urlstyle{same}
+ 
+\usepackage[english]{babel}
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{wikicite.bib}
+
+\title{CS251 Assignment-7}
+\author{Anant Vats }
+\date{March 2017}
+
+\begin{document}
+
+\maketitle
+\section{About Atharvaveda}
+The Atharva (Atharvaveda from atharvānas and veda meaning "knowledge") is the "knowledge storehouse of atharvānas, the procedures for everyday life". The text is the fourth Veda, but has been a late addition to the Vedic scriptures of Hinduism.\cite{wikicite1}
+
+The Atharvaveda is composed in Vedic Sanskrit, and it is a collection of 730 hymns with about 6,000 mantras, divided into 20 books. About a sixth of the Atharvaveda text adapts verses from the Rigveda, and except for Books 15 and 16, the text is in poem form deploying a diversity of Vedic meters.\cite{wikicite1} 
+
+\section{Method of Multiplication}
+The following algorithm multiplies two digit numbers quickly.
+\begin{algorithm}
+\caption{Multiply}\label{Merge}
+\begin{algorithmic}[1]
+\Procedure{Multiply}{$ab,cd$}\Comment{Multiply special two digit numbers}
+\If{$a=c\ \&\ b+d=10$}  \Comment{Case 1}
+\State $x\gets a\cdot (a+1)$
+\State $y\gets b\cdot d$
+\State $Ans\gets xy$
+\EndIf
+\If{$a+c=10\ \&\ b=d $} \Comment{Case 2}
+\State $x\gets a\cdot c+b$
+\State$y\gets b\cdot b$
+\State$Ans\gets xy$
+\Else
+\State Do it normally.
+\EndIf
+\EndProcedure
+\Statex
+
+\end{algorithmic}
+\end{algorithm}
+
+\section{Is It Worth Remembering}
+
+Effectively, this method requires us to multiply two single-digit numbers, twice. The fastness of the procedures lies in this fact alone. Multiplying single-digit numbers takes hardly any time (we have been doing it since ages). Concatenating the answers gives us the final product. Hence, if the two-digit numbers satisfy the mentioned conditions, they can be multiplies super-fast.
+
+\section{Algebraic Proof}
+Consider the two digit numbers\footnote{example a=1 and b=2 is 12}: ab and cd.\\
+\Large{\textbf{ Case 1}}
+\begin{align}
+a=c&\ \& \ b+d=10\\
+ab\cdot cd&=(10a+b)\cdot(10a+d)\\
+&=100a^2+10a\cdot (b+d)+b\cdot d\\
+&=100a^2+10a\cdot (10)+b\cdot d\\
+&=100a\cdot(a+1)+b\cdot d
+\end{align}
+\Large{\textbf{ Example}}\\
+\begin{figure}[h]
+  \centering
+    \includegraphics{ex11.pdf}
+    \includegraphics{ex1_11.pdf}
+  \caption{Case 1}
+  \label{fig:case1}
+\end{figure}\\
+In Figure \ref{fig:case1}, we see examples of the first type.
+\newpage
+\Large{\textbf{ Case 2}}
+\begin{align}
+a+c & =10\ \& \ b=d\\
+ab\cdot cd&=(10a+b)\cdot(10c+b)\\
+&=100a\cdot c+10b\cdot (a+c)+b^2 \\
+&=100a\cdot c+10b\cdot (10)+b^2\\
+&=100(a\cdot c+b) + b^2
+\end{align}
+\Large{\textbf{ Example}}\\
+\begin{figure}[h]
+  \centering
+    \includegraphics{ex21.pdf}
+    \includegraphics{ex31.pdf}
+  \caption{Case 2}
+  \label{fig:case2}
+\end{figure}\\
+In Figure \ref{fig:case2}, we see examples of the second type.
+
+
+\section{Summary}
+For two digit numbers $ab$ and $cd$. We can multiply as:\\
+
+\begin{tabular}{|c|c|c|}
+\hline
+    \textbf{Case} & \textbf{Condition} & \textbf{Result}\\
+    \hline \hline
+     1 & $a=c\ \&\ b+d=10$ & $a\cdot (a+1):b\cdot d$ \\ \hline
+     2 & $a+c=10\ \&\ b=d$ & $a\cdot c+b:b^2$ \\
+\hline
+\end{tabular}
+
+
+\newpage
+\section*{Generalization}
+
+This concept can be extended to numbers of $n$ digits in both cases.\\
+Consider two numbers, $N_1,N_2$, of $n$ digits each. Let the digit in one's place be $a,b$ respectively. Let the numbers excuding the one's place be $n_1,n_2$ respectively.\\
+Then,\\
+
+\textbf{Case 1:}
+\begin{gather}\notag
+\begin{aligned}
+    n_1 &=n_2\\
+a+b &=10\\
+    \\
+N_1\cdot N_2 &=n_1\cdot (n_1+1):a\cdot b
+\end{aligned}
+\end{gather}
+
+\textbf{Case 2:}
+\begin{gather}\notag
+\begin{aligned}
+n_1+n_2 &=10^{n-1}\\
+    a &=b\\
+    \\
+N_1\cdot N_2 &=n_1\cdot n_2+a:a^2
+\end{aligned}
+\end{gather}
+The proof for the above cases is similar to the proof for numbers with 2-digits.
+
+\section{Further Reading}
+For some more interesting Vedic Math tricks, see:\\
+\href{http://www.jainmathemagics.com/vedicmathematics/}{JainMathematics}\\
+\href{http://www.mastermindvedicmaths.com/}{Vedic Mastermind}%\\
+%\href{http://vedicmathsindia.org/}{Vedic Maths India}
+
+
+\printbibliography
+
+\end{document}
+
